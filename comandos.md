@@ -57,9 +57,9 @@
     "exclude": ["node_modules"]
     }
 ```
-- **🔸"target"**: "ES2020": Define a versão do JavaScript que o TypeScript vai gerar.
-- **🔸"module"**: "CommonJS": Especifica o sistema de módulos (compatível com Node.js).
-- **🔸"outDir"**: "./dist": Diretório de saída para o código JavaScript compilado.
+- **"target"**: "ES2020": Define a versão do JavaScript que o TypeScript vai gerar.
+- **"module"**: "CommonJS": Especifica o sistema de módulos (compatível com Node.js).
+- **"outDir"**: "./dist": Diretório de saída para o código JavaScript compilado.
 
 ### 6. Inicializar o Prisma e configurar o banco de dados
 ```bash
@@ -75,15 +75,22 @@
 ### 8. Scripts no `package.json`
 ```bash
     {
-    "scripts": {
-        "dev": "nodemon src/index.ts",
-        "build": "tsc",
-        "start": "node dist/index.js",
-        "migrate:default": "npx prisma migrate dev --name init",
-        "migrate:producao": "npx prisma migrate deploy"
-    }
+        "scripts": {
+            "dev": "nodemon src/index.ts",
+            "build": "tsc",
+            "start": "node dist/index.js",
+            "migrate:default": "npx prisma migrate dev",
+            "migrate:producao": "npx prisma migrate deploy"
+        }
     }
 ```
+- "Configurando o package.json desta forma é possível facilitar a execução da migração..
+    ```bash
+        npm run migrate:default
+    ```
+    ```bash
+        npm run migrate:producao
+    ```
 
 ## Executando a API
 
