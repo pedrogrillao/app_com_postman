@@ -84,7 +84,7 @@
         }
     }
 ```
-- "Configurando o package.json desta forma é possível facilitar a execução da migração..
+- Configurando o package.json desta forma é possível facilitar a execução da migração.
     ```bash
         npm run migrate:default
     ```
@@ -93,6 +93,20 @@
     ```
 
 ## Executando a API
+### Configurando recomendadas `package.json`.
+    ```bash
+    {
+        "scripts": {                      
+            "dev": "nodemon src/index.ts",
+            "build": "tsc",               
+            "start": "node dist/index.js" 
+        } 
+    }
+    ```
+    - **"target"**:
+    - **npm run dev**   ->Durante o desenvolvimento, você pode rodar o servidor diretamente com o comando;
+    - **npm run build** ->Quando quiser compilar o TypeScript para JavaScript;
+    - **npm start**     ->Depois de compilado é possível executar o JavaScript com resultante
 
 - Durante o desenvolvimento:
 ```bash
