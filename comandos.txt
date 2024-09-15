@@ -1,0 +1,118 @@
+***********************************************************************************
+***┌──────────────────────────────────────────────────────────────────────────┐****
+***│ Passo a Passo para Configuração da API com TypeScript, Prisma e Express  │****
+***└──────────────────────────────────────────────────────────────────────────┘****
+***********************************************************************************
+
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ ************************** Instalações de bibliotecas ************************** │
+└──────────────────────────────────────────────────────────────────────────────────┘
+┌─────────────┐
+│ npm init -y │
+└─────────────┘
+✔️Objetivo: Este comando criará o arquivo package.json no diretório raiz de seu projeto, este arquivo serve para:
+    🔸Definir metadados do projeto (nome, versão, etc.).
+    🔸Gerenciar dependências de produção e desenvolvimento.
+    🔸Automatizar tarefas com scripts (como compilar TypeScript).
+    🔸Organizar e facilitar o controle do projeto.
+
+
+
+┌────────────────────────────────────────────────────────────┐
+│ npm install express @prisma/client jsonwebtoken bcryptjs   │
+└────────────────────────────────────────────────────────────┘
+✔️Objetivo: Instalar as bibliotecas necessárias para produção
+    🔸Express:        Framework minimalista para Node.js que simplifica a criação de aplicações web e APIs.
+    🔸@prisma/client: Cliente ORM para Node.js que facilita a interação com bancos de dados SQL com tipagem forte.
+    🔸jsonwebtoken:   Biblioteca para gerar, assinar e verificar JSON Web Tokens (JWT) para autenticação e autorização.
+    🔸bcryptjs:       Biblioteca para hash seguro de senhas usando o algoritmo bcrypt, com suporte a salt e comparação de hashes.
+
+
+┌──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ npm install -D typescript ts-node @types/express @types/node @types/jsonwebtoken @types/bcryptjs prisma nodemon  │
+└──────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+✔️Objetivo: Instale as dependências de desenvolvimento, como TypeScript, Prisma CLI, e ferramentas para o ambiente de desenvolvimento:
+    🔸typescript:           Transpila código TypeScript para JavaScript, permitindo o uso de tipos estáticos e outras características do TypeScript em projetos Node.js.
+    🔸ts-node:              Executa diretamente arquivos TypeScript no Node.js, sem necessidade de pré-compilação para JavaScript.
+    🔸@types/express:       Tipos TypeScript para a biblioteca Express, proporcionando autocompletar e verificação de tipos em projetos que usam Express.
+    🔸@types/node:          Tipos TypeScript para as APIs internas do Node.js, permitindo autocompletar e verificação de tipos para código Node.js.
+    🔸@types/jsonwebtoken:  Tipos TypeScript para a biblioteca jsonwebtoken, fornecendo suporte a tipagem para manipulação de JWTs.
+    🔸@types/bcryptjs:      Tipos TypeScript para a biblioteca bcryptjs, oferecendo suporte a tipagem para hashing de senhas com bcrypt.
+    🔸prisma:               Ferramenta ORM que facilita a interação com bancos de dados SQL, incluindo um cliente para consultas e migrações de esquema.
+    🔸nodemon:              Ferramenta para reiniciar automaticamente o servidor Node.js quando mudanças no código são detectadas, facilitando o desenvolvimento.
+
+────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+┌──────────────────────────────────────────────────────────────────────────────────┐
+│ *************************** Configuração necessárias *************************** │
+└──────────────────────────────────────────────────────────────────────────────────┘
+
+┌────────────────┐
+│ npx tsc --init │
+└────────────────┘
+✔️Objetivo: Criar o arquivo de configuração tsconfig.json**
+
+┌────────────────────────────────┐
+│ Configuração do tsconfig.json  │
+└────────────────────────────────┘
+✔️Objetivo: Configurar a compilação do TypeScript
+    ┌──────────────────────────────────────────────────────┐
+    │ {                                                    │
+    │     "compilerOptions": {                             │                   
+    │         "target": "ES2020",                          │                       
+    │         "module": "commonjs",                        │                       
+    │         "strict": true,                              │                   
+    │         "esModuleInterop": true,                     │                           
+    │         "skipLibCheck": true,                        │                       
+    │         "forceConsistentCasingInFileNames": true,    │                                           
+    │         "outDir": "./dist"                           │                   
+    │     },                                               │
+    │     "include": ["src/**/*.ts"],                      │                           
+    │     "exclude": ["node_modules"]                      │                           
+    │ }                                                    │ 
+    └──────────────────────────────────────────────────────┘    
+    🔸"target": "ES2020": Define a versão do JavaScript que o TypeScript vai gerar.
+    🔸"module": "CommonJS": Especifica o sistema de módulos (compatível com Node.js).
+    🔸"outDir": "./dist": Diretório de saída para o código JavaScript compilado.
+
+
+┌─────────────────┐
+│ npx prisma init │
+└─────────────────┘
+✔️Objetivo: Inicializar o Prisma e configurar o banco de dados;
+
+┌───────────────────────────────────┐
+│npx prisma migrate dev --name init │
+└───────────────────────────────────┘
+✔️Objetivo: Executar o migration para a criação da estrutura de bando de dados**
+    É possível também configurar package.js para simplificar o comando de migration
+
+    **Executar a partir o package.js**
+    🔸npm run migrate:mysql
+    🔸npm run migrate:postgre
+    ┌────────────────────────────────────────────────────────┐
+    │ "scripts": {                                           │
+    │     ...,                                               │                   
+    │     "migrate:default": "npx prisma migrate dev ...",   │                       
+    │     "migrate:producao": "npx prisma migrate dev ...."  │                       
+    │   }                                                    │ 
+    └────────────────────────────────────────────────────────┘  
+
+
+┌──────────────────┐
+│  Executando API  │
+└──────────────────┘
+
+    🔸npm run dev   ->Durante o desenvolvimento, você pode rodar o servidor diretamente com o comando;
+    🔸npm run build ->Quando quiser compilar o TypeScript para JavaScript;
+    🔸npm start     ->Depois de compilado é possível executar o JavaScript com resultante
+
+    **package.json***
+    ┌───────────────────────────────────────┐
+    │ "scripts": {                          │
+    │     "dev": "nodemon src/index.ts",    │                   
+    │     "build": "tsc",                   │                       
+    │     "start": "node dist/index.js"     │                       
+    │ },                                    │ 
+    └───────────────────────────────────────┘  
