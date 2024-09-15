@@ -94,15 +94,15 @@
 
 ## Executando a API
 ### Configurando recomendadas `package.json`.
-    ```bash
+```bash
     {
-        "scripts": {                      
+        "scripts": {
             "dev": "nodemon src/index.ts",
-            "build": "tsc",               
-            "start": "node dist/index.js" 
-        } 
+            "build": "tsc",
+            "start": "node dist/index.js"
+        }
     }
-    ```
+```
     - **"target"**:
     - **npm run dev**   ->Durante o desenvolvimento, você pode rodar o servidor diretamente com o comando;
     - **npm run build** ->Quando quiser compilar o TypeScript para JavaScript;
