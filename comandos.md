@@ -103,10 +103,10 @@
         }
     }
 ```
-    - **"target"**:
-    - **npm run dev**   ->Durante o desenvolvimento, você pode rodar o servidor diretamente com o comando;
-    - **npm run build** ->Quando quiser compilar o TypeScript para JavaScript;
-    - **npm start**     ->Depois de compilado é possível executar o JavaScript com resultante
+- **"target"**:
+- **npm run dev**   ->Durante o desenvolvimento, você pode rodar o servidor diretamente com o comando;
+- **npm run build** ->Quando quiser compilar o TypeScript para JavaScript;
+- **npm start**     ->Depois de compilado é possível executar o JavaScript com resultante
 
 - Durante o desenvolvimento:
 ```bash
