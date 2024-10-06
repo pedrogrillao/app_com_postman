@@ -14,10 +14,11 @@ datasource db {
 }
 
 model Usuario {
-  id        BigInt   @id @default(autoincrement())
+  id        Int   @id @default(autoincrement())
   nome      String
   email     String   @unique
   senha     String
+  data_nasc    DateTime?
   status       Boolean  @default(true)
   rotas     Rota[]
   seguidores Seguir[] @relation("seguidores")
@@ -25,19 +26,19 @@ model Usuario {
 }
 
 model Rota {
-  id           BigInt   @id @default(autoincrement())
+  id           Int   @id @default(autoincrement())
   nome         String
   coordenadas  Json  
-  usuarioId    BigInt
+  usuarioId    Int
   usuario      Usuario  @relation(fields: [usuarioId], references: [id])
   createdAt    DateTime @default(now())
   updatedAt    DateTime @default(now())
 }
 
 model Seguir {
-  id                 BigInt   @id @default(autoincrement())
-  usuarioSeguidorId  BigInt
-  usuarioSeguidoId   BigInt 
+  id                 Int   @id @default(autoincrement())
+  usuarioSeguidorId  Int
+  usuarioSeguidoId   Int 
   
   usuarioSeguidor    Usuario  @relation("seguidores", fields: [usuarioSeguidorId], references: [id], onDelete: Cascade)
   usuarioSeguido     Usuario  @relation("seguidos", fields: [usuarioSeguidoId], references: [id], onDelete: Cascade)

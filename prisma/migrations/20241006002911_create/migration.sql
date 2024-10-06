@@ -1,9 +1,10 @@
 -- CreateTable
 CREATE TABLE "Usuario" (
-    "id" BIGSERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
     "email" TEXT NOT NULL,
     "senha" TEXT NOT NULL,
+    "data_nasc" TIMESTAMP(3),
     "status" BOOLEAN NOT NULL DEFAULT true,
 
     CONSTRAINT "Usuario_pkey" PRIMARY KEY ("id")
@@ -11,10 +12,10 @@ CREATE TABLE "Usuario" (
 
 -- CreateTable
 CREATE TABLE "Rota" (
-    "id" BIGSERIAL NOT NULL,
+    "id" SERIAL NOT NULL,
     "nome" TEXT NOT NULL,
     "coordenadas" JSONB NOT NULL,
-    "usuarioId" BIGINT NOT NULL,
+    "usuarioId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
@@ -23,9 +24,9 @@ CREATE TABLE "Rota" (
 
 -- CreateTable
 CREATE TABLE "Seguir" (
-    "id" BIGSERIAL NOT NULL,
-    "usuarioSeguidorId" BIGINT NOT NULL,
-    "usuarioSeguidoId" BIGINT NOT NULL,
+    "id" SERIAL NOT NULL,
+    "usuarioSeguidorId" INTEGER NOT NULL,
+    "usuarioSeguidoId" INTEGER NOT NULL,
 
     CONSTRAINT "Seguir_pkey" PRIMARY KEY ("id")
 );
